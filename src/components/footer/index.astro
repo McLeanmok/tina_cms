@@ -4,13 +4,14 @@ import Container from "../container.astro";
 import navData from "../../data/menu.json";
 import "./styles.css"
 interface Props {
+    agencyName: string,
     noBottomBar?: boolean
     hasCards?: boolean
     mainContent?: boolean
     bottomBarText?: string
 }
 
-const { noBottomBar, bottomBarText = "No Generative AI was used in the production of this website", hasCards, mainContent = true } = Astro.props;
+const { noBottomBar, bottomBarText = "No Generative AI was used in the production of this website", hasCards, mainContent = true, agencyName = "Your Agency Name"} = Astro.props;
 ---
 
 <footer class="site-footer" id="footer">
@@ -68,7 +69,7 @@ const { noBottomBar, bottomBarText = "No Generative AI was used in the productio
                 </svg>{/*  End placeholder logo  */}
             </figure>
         </a> {/*  End brand */}
-        <p class="site-footer__legal">Copyright &copy; <span id="year"></span>| Your Agency: All Rights reserved
+        <p class="site-footer__legal">Copyright &copy; <span id="year"></span>| {agencyName}: All Rights reserved
         </p>
     </div>    
                     <div class="site-footer__content-group">
