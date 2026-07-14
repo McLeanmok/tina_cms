@@ -1,0 +1,31 @@
+---
+import "./styles.css"
+
+// initialization of props
+interface Props {
+    heading?: string,
+    lede?: string,
+    theme: "default" | "light"
+}
+
+const { heading = "An Effective Marketing Headline", lede = "This is just placeholder text. Don’t be alarmed, this is just here to fill up space since your finalized copy isn’t ready yet. Once we have your content finalized, we’ll replace this placeholder text with your real content.", theme = "default" } = Astro.props as Props;
+
+// inport components
+import Input from "../input.astro";
+import Button from "../button.astro";
+---
+
+<article class="marketing-optin">
+    <div class="marketing-optin__inner-wrapper">
+        <div class="marketing-optin__content-wrapper">
+            <h3 class="marketing-optin__heading">{heading}</h3>
+            <p class="marketing-optin__lede">{lede}</p>
+        </div>
+
+        <form action="" class="marketing-optin__form">
+            <Input type="text" name="first_name" id="first_name" placeholder="First name" ariaLabel="Enter your first name" />
+            <Input type="email" name="email" id="email" placeholder="Email Address" ariaLabel="Enter your email address" />
+            <Button as="button" text="Subscribe" title="You are about to subscribe to our newsletter" />
+        </form>
+    </div>
+</article>

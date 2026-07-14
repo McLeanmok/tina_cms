@@ -1,0 +1,55 @@
+/* This file contains all the styling content for the intro block */
+@layer champ-intro {
+  [class$="-intro"] {
+    --intro-gap: calc(var(--content-gap) / 2);
+    display: grid;
+    gap: var(--intro-gap);
+  }
+  [class$="-intro__eyebrow"] {
+    font-size: var(--fs-p);
+    line-height: var(--lh-body);
+    text-transform: uppercase;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-sm);
+  }
+  [class$="-intro__marketing-heading"] {
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-headinsgs);
+
+    /* Switching font sizes */
+    &[data-size="content-section"] {
+      font-size: var(--fs-h2);
+    }
+    &[data-size="hero"] {
+      font-size: var(--fs-h1);
+    }
+  }
+
+  [class$="-intro__buttons"] {
+    display: grid;
+    gap: var(--gap-sm);
+    @media (width > 760px) {
+      grid-template-columns: var(--grid-2-static);
+    }
+  }
+  /* Alignments */
+  [data-intro-alignment="center"] {
+    @media (width > 760px) {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  [data-intro-alignment="right"] {
+    @media (width > 760px) {
+      text-align: right;
+      align-items: right;
+      justify-content: right;
+    }
+  }
+
+  /* Themes */
+  [data-intro-theme="light"] {
+    color: var(--white);
+  }
+}

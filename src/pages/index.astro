@@ -1,17 +1,12 @@
 ---
-
+import Container from "../components/container.astro";
+import MainTemplate from "../templates/main-template.astro";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<!-- customize this page to your projects requirements. This is simply a starting point  -->
+<MainTemplate title="ChampCSS Astro Theme" description="A starter theme for Astro using ChampCSS" author="Major Digital Projects" keywords={["Astro", "ChampCSS", "Starter Theme"]}>
+	<section>
+		<Container >
+			<h1>ChampCSS Astro Theme</h1>
+			</Container>	
+	</section> 
+</MainTemplate>

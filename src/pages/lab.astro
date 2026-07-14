@@ -1,0 +1,43 @@
+---
+import Container from "../components/container.astro";
+import MainTemplate from "../templates/main-template.astro";
+import Button from "../components/button.astro";
+import Intro from "../components/intro/index.astro";
+import SiteForm from "../components/site-form.astro";
+import EmailOptin from "../components/marketing-opt-in/index.astro"
+---
+<!-- customize this page to your projects requirements. This is simply a starting point  -->
+<MainTemplate title="ChampCSS Astro Theme" description="A starter theme for Astro using ChampCSS" author="Major Digital Projects" keywords={["Astro", "ChampCSS", "Starter Theme"]}>
+	<section>
+		<Container >
+			<h1>ChampCSS Astro Theme Playground</h1>
+				<Button text="internal Button" theme="primary" href="#" />
+				<Button text="external Button" theme="primary" as="button" />
+
+				<br>
+				<Intro 
+				alignment="center"
+					hasEyebrow
+					Eyebrow="This is the SEO Heading"
+					
+					marketingHeading="This is the marketing heading"
+					lede="This is the lede, a short description of the content that follows. It should be engaging and informative, enticing readers to continue reading."
+					blockName="playground"
+					situation="content-section"
+
+					HasButtons
+					buttonOneText="Learn More"
+					buttonOneHref="#"
+					hasSecondBtn
+					buttonTwoText="Get Started"
+					buttonTwoHref="#"
+				/>
+				<SiteForm />
+			</Container>	
+	</section> 
+	<section>
+		<Container>
+			<EmailOptin />
+		</Container>
+	</section>
+</MainTemplate>

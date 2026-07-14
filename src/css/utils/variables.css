@@ -1,0 +1,558 @@
+/* 
+  This file contains all the varibles used in ChampCSS. here you can find the primary colours, and other variables that are used throughout the framework. You can override these variables in your own CSS files, or in the `custom.css` file.
+
+  You can also add your own variables here, or in the `custom.css` file. This file is a good place to start if you want to customize the look and feel of your website.
+
+  Here's a brief overview of the variables used in this file:
+  - `--primary-h`, `--primary-s`, `--primary-l`: These variables define the hue, saturation, and lightness of the primary colour used in the framework. You can change these values to create a different colour scheme.
+  - `--primary`: This variable defines the primary colour used in the framework. You can change this value to create a different colour scheme.
+  - `--primary-base-trans-100`: This variable defines the transparency of the primary colour used in the framework. You can change this value to create a different transparency.
+  - `--primary-base-sat-100`: This variable defines the saturation of the primary colour used in the framework. You can change this value to create a different saturation.
+  NOTE: this is true for all shades of a color (100-900), and for all color families (primary, secondary, tertiary, etc.).
+
+  Font families, sizes, and other variables are also defined in this file. You can change these values to create a different look and feel for your website.
+  The syntax for font variables is as follows:
+  - `--font-family-primary`: This variable defines the primary font family used in the framework. You can change this value to use a different font family.
+  - `--font-family-secondary`: This variable defines the secondary font family used in the framework. You can change this value to use a different font family.
+  
+*/
+/* Importing Google font - you really want to swap this out to suit your needs. I would strongly recommend using @font-face and load the fonts in locally, I'm using the CDN just for the sake of convenience */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* Varibles */
+:root {
+  /* =====
+  COLOURS
+  ===== */
+
+  --primary: oklch(0.3313 0.076 301.72);
+  --secondary: oklch(0.4112 0.0973 261.76);
+  --tertiary: oklch(0.8328 0.0735 128.4);
+  --surface: oklch(0.6325 0.0337 265.2);
+  --accent: oklch(0.9235 0.1046 132);
+  --danger: oklch(0.6786 0.2095 24.66);
+  --success: oklch(0.9219 0.1856 133.03);
+  --info: oklch(0.9084 0.1151 200.1);
+  --warning: oklch(0.8519 0.1166 70.46);
+
+  /* Primary variants  */
+  --primary-ultra-dark: color-mix(in srgb, var(--primary) 20%, black);
+  --primary-dark: color-mix(in srgb, var(--primary) 30%, black);
+  --primary-mid: color-mix(in srgb, var(--primary) 50%, black);
+  --primary-light: color-mix(in srgb, var(--primary) 70%, white);
+  --primary-ultra-light: color-mix(in srgb, var(--primary) 20%, white);
+
+  /* Secondary variants  */
+  --secondary-ultra-dark: color-mix(in srgb, var(--secondary) 20%, black);
+  --secondary-dark: color-mix(in srgb, var(--secondary) 30%, black);
+  --secondary-mid: color-mix(in srgb, var(--secondary) 50%, black);
+  --secondary-light: color-mix(in srgb, var(--secondary) 70%, white);
+  --secondary-ultra-light: color-mix(in srgb, var(--secondary) 20%, white);
+
+  /* Tertiary variants  */
+  --tertiary-ultra-dark: color-mix(in srgb, var(--tertiary) 20%, black);
+  --tertiary-dark: color-mix(in srgb, var(--tertiary) 30%, black);
+  --tertiary-mid: color-mix(in srgb, var(--tertiary) 50%, black);
+  --tertiary-light: color-mix(in srgb, var(--tertiary) 70%, white);
+  --tertiary-ultra-light: color-mix(in srgb, var(--tertiary) 20%, white);
+
+  /* Surface variants  */
+  --surface-ultra-dark: color-mix(in srgb, var(--surface) 20%, black);
+  --surface-dark: color-mix(in srgb, var(--surface) 30%, black);
+  --surface-mid: color-mix(in srgb, var(--surface) 50%, black);
+  --surface-light: color-mix(in srgb, var(--surface) 70%, white);
+  --surface-ultra-light: color-mix(in srgb, var(--surface) 20%, white);
+
+  /* Accent variants */
+  --accent-ultra-dark: color-mix(in srgb, var(--accent) 20%, black);
+  --accent-dark: color-mix(in srgb, var(--accent) 30%, black);
+  --accent-mid: color-mix(in srgb, var(--accent) 50%, black);
+  --accent-light: color-mix(in srgb, var(--accent) 70%, white);
+  --accent-ultra-light: color-mix(in srgb, var(--accent) 20%, white);
+
+  /* Danger variants  */
+  --danger-ultra-dark: color-mix(in srgb, var(--danger) 20%, black);
+  --danger-dark: color-mix(in srgb, var(--danger) 30%, black);
+  --danger-mid: color-mix(in srgb, var(--danger) 50%, black);
+  --danger-light: color-mix(in srgb, var(--danger) 70%, white);
+  --danger-ultra-light: color-mix(in srgb, var(--danger) 20%, white);
+
+  /* Success variants  */
+  --success-ultra-dark: color-mix(in srgb, var(--success) 20%, black);
+  --success-dark: color-mix(in srgb, var(--success) 30%, black);
+  --success-mid: color-mix(in srgb, var(--success) 50%, black);
+  --success-light: color-mix(in srgb, var(--success) 70%, white);
+  --success-ultra-light: color-mix(in srgb, var(--success) 20%, white);
+
+  /* Info variants  */
+  --info-ultra-dark: color-mix(in srgb, var(--info) 20%, black);
+  --info-dark: color-mix(in srgb, var(--info) 30%, black);
+  --info-mid: color-mix(in srgb, var(--info) 50%, black);
+  --info-light: color-mix(in srgb, var(--info) 70%, white);
+  --info-ultra-light: color-mix(in srgb, var(--info) 20%, white);
+
+  /* Warning variants  */
+  --warning-ultra-dark: color-mix(in srgb, var(--warning) 20%, black);
+  --warning-dark: color-mix(in srgb, var(--warning) 30%, black);
+  --warning-mid: color-mix(in srgb, var(--warning) 50%, black);
+  --warning-light: color-mix(in srgb, var(--warning) 70%, white);
+  --warning-ultra-light: color-mix(in srgb, var(--warning) 20%, white);
+
+  /* Semantic colours */
+  --site-color: var(--primary);
+  --site-hover-color: var(--primary-dark);
+  --secondary-site-color: var(--secondary);
+  --secondary-site-hover-color: var(--secondary-dark);
+
+  --black: color-mix(in srgb, var(--primary) 10%, black);
+  --white: color-mix(in srgb, var(--primary) 10%, white);
+
+  --text-color: var(--black);
+  --body-color: var(--white);
+
+  /* Backgrounds */
+  /* Standard background */
+  --bg-dark: var(--primary-dark);
+  --bg-light: var(--primary-light);
+
+  /* Background patterns */
+  /* Split */
+  /* Base Styles */
+  --split-left-color: var(--black);
+  --split-left-percentage: 50%;
+  --split-right-color: var(--white);
+  --split-right-percentage: 50%;
+
+  /* Primary  */
+  --primary-split-left-bg: var(--primary-dark);
+  --primary-split-left-percentage: var(--split-left-percentage);
+  --primary-split-right-bg: var(--white);
+  --primary-split-right-percentage: var(--split-right-percentage);
+  --primary-split: linear-gradient(
+    to right,
+    var(--primary-split-left-bg) var(--primary-split-left-percentage),
+    var(--primary-split-right-bg) var(--primary-split-right-percentage)
+  );
+
+  /* Secondary  */
+  --secondary-split-left-bg: var(--secondary-dark);
+  --secondary-split-left-percentage: var(--split-left-percentage);
+  --secondary-split-right-bg: var(--white);
+  --secondary-split-right-percentage: var(--split-right-percentage);
+  --secondary-split: linear-gradient(
+    to right,
+    var(--secondary-split-left-bg) var(--secondary-split-left-percentage),
+    var(--secondary-split-right-bg) var(--secondary-split-right-percentage)
+  );
+
+  /* Tertiary  */
+  --tertiary-split-left-bg: var(--tertiary-dark);
+  --tertiary-split-left-percentage: var(--split-left-percentage);
+  --tertiary-split-right-bg: var(--white);
+  --tertiary-split-right-percentage: var(--split-right-percentage);
+  --tertiary-split: linear-gradient(
+    to right,
+    var(--tertiary-split-left-bg) var(--tertiary-split-left-percentage),
+    var(--tertiary-split-right-bg) var(--tertiary-split-right-percentage)
+  );
+
+  /* Surface */
+  --surface-split-left-bg: var(--surface-dark);
+  --surface-split-left-percentage: var(--split-left-percentage);
+  --surface-split-right-bg: var(--white);
+  --surface-split-right-percentage: var(--split-right-percentage);
+  --surface-split: linear-gradient(
+    to right,
+    var(--surface-split-left-bg) var(--surface-split-left-percentage),
+    var(--surface-split-right-bg) var(--surface-split-right-percentage)
+  );
+
+  /* Overlap */
+  /* Base Styles */
+  --overlap-top-color: var(--black);
+  --overlap-top-percentage: 50%;
+  --overlap-bottom-color: var(--white);
+  --overlap-bottom-percentage: 50%;
+  --overlap: linear-gradient(
+    to bottom,
+    var(--overlap-top-color) var(--overlap-top-percentage),
+    var(--overlap-bottom-color) var(--overlap-bottom-percentage)
+  );
+
+  /* Primary */
+  --primary-overlap-top-bg: var(--primary-dark);
+  --primary-overlap-top-percentage: var(--overlap-top-percentage);
+  --primary-overlap-bottom-bg: var(--white);
+  --primary-overlap-bottom-percentage: var(--overlap-bottom-percentage);
+  --primary-overlap: linear-gradient(
+    to bottom,
+    var(--primary-overlap-top-bg) var(--primary-overlap-top-percentage),
+    var(--primary-overlap-bottom-bg) var(--primary-overlap-bottom-percentage)
+  );
+
+  /* Secondary */
+  --secondary-overlap-top-bg: var(--secondary-dark);
+  --secondary-overlap-top-percentage: var(--overlap-top-percentage);
+  --secondary-overlap-bottom-bg: var(--white);
+  --secondary-overlap-bottom-percentage: var(--overlap-bottom-percentage);
+  --secondary-overlap: linear-gradient(
+    to bottom,
+    var(--secondary-overlap-top-bg) var(--secondary-overlap-top-percentage),
+    var(--secondary-overlap-bottom-bg)
+      var(--secondary-overlap-bottom-percentage)
+  );
+
+  /* Tertiary */
+  --tertiary-overlap-top-bg: var(--tertiary-dark);
+  --tertiary-overlap-top-percentage: var(--overlap-top-percentage);
+  --tertiary-overlap-bottom-bg: var(--white);
+  --tertiary-overlap-bottom-percentage: var(--overlap-bottom-percentage);
+  --tertiary-overlap: linear-gradient(
+    to bottom,
+    var(--tertiary-overlap-top-bg) var(--tertiary-overlap-top-percentage),
+    var(--tertiary-overlap-bottom-bg) var(--tertiary-overlap-bottom-percentage)
+  );
+
+  /* Surface */
+  --surface-overlap-top-bg: var(--surface-dark);
+  --surface-overlap-top-percentage: var(--overlap-top-percentage);
+  --surface-overlap-bottom-bg: var(--white);
+  --surface-overlap-bottom-percentage: var(--overlap-bottom-percentage);
+  --surface-overlap: linear-gradient(
+    to bottom,
+    var(--surface-overlap-top-bg) var(--surface-overlap-top-percentage),
+    var(--surface-overlap-bottom-bg) var(--surface-overlap-bottom-percentage)
+  );
+  /* =====
+  TYPOGRAPHY
+  =====*/
+
+  /* Font sizes */
+  --fs-h1: clamp(2.206rem, 1.165vw + 1.833rem, 3.4247rem);
+  --fs-h2: clamp(2.207rem, 1.164vw + 1.834rem, 3.4247rem);
+  --fs-h3: clamp(2.207rem, 0.651vw + 1.999rem, 2.8868rem);
+  --fs-h4: clamp(1.4247rem, 0.818vw + 1.163rem, 2.2806rem);
+  --fs-h5: clamp(1.2656rem, 0.512vw + 1.102rem, 1.801rem);
+  --fs-h6: clamp(1.1125rem, 0.467vw + 0.963rem, 1.6013rem);
+  --fs-links: clamp(1rem, 0.215vw + 1.306rem, 1.6rem);
+  --fs-p: clamp(1rem, 0.299vw + 0.904rem, 1.3125rem);
+
+  /* Letter Spacing */
+  --ls-sm: 0.15rem;
+  --ls-md: 0.25rem;
+  --ls-lg: 0.48rem;
+  --ls-xl: 0.5rem;
+
+  /* Line heights */
+  --lh-body: clamp(1.3rem, 0.956vw + 0.694rem, 2rem);
+  --lh-headinsgs: clamp(2rem, 1.912vw + 1.388rem, 4rem);
+
+  /* Fonts */
+  --ff-body: "Montserrat", sans-serif;
+  --ff-headings: "Montserrat", sans-serif;
+
+  /* Weights -- You will want to remove some of these utilities based on what font setup your project is using */
+  --fw-ultrathin: 100;
+  --fw-thin: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 600;
+  --fw-semibold: 700;
+  --fw-ultrabold: 800;
+  --fw-black: 900;
+
+  /* =====
+  SPACING AND LAYOUT
+  =====*/
+
+  /* General Spacer Tokens */
+  --sp-50: 0.5rem;
+  --sp-100: 1rem;
+  --sp-150: 1.5rem;
+  --sp-200: 2rem;
+  --sp-250: 2.5rem;
+  --sp-300: 3rem;
+  --sp-350: 3.5rem;
+  --sp-400: 4rem;
+  --sp-450: 4.5rem;
+  --sp-500: 5rem;
+  --sp-550: 5.5rem;
+  --sp-600: 6rem;
+  --sp-650: 6.5rem;
+
+  /* Section Padding */
+  --section-padding-xs: clamp(0.5rem, 0.478vw + 0.347rem, 1rem);
+  --section-padding-sm: clamp(1rem, 0.956vw + 0.694rem, 2rem);
+  --section-padding-md: clamp(2rem, 1.912vw + 1.388rem, 4rem);
+  --section-padding-lg: clamp(2.5rem, 2.39vw + 1.735rem, 5rem);
+  --section-padding-xl: clamp(6rem, -2.868vw + 6.918rem, 6rem);
+
+  /* Gaps */
+  --gap-sm: clamp(0.5rem, 0.478vw + 0.347rem, 1rem);
+  --gap-md: clamp(1.5rem, 0.478vw + 1.347rem, 2rem);
+  --gap-lg: clamp(1.5rem, 1.912vw + 0.888rem, 3.5rem);
+  --gap-xl: clamp(2rem, 1.912vw + 1.388rem, 4rem);
+
+  --card-gap: var(--gap-md);
+  --grid-gap: var(--gap-md);
+  --content-gap: var(--gap-md);
+  --container-gap: var(--gap-md);
+
+  /* Grid templates */
+  --grid-2: repeat(auto-fit, minmax(min(500px, 100%), 2fr));
+  --grid-3: repeat(auto-fit, minmax(min(333px, 100%), 3fr));
+  --grid-4: repeat(auto-fit, minmax(min(250px, 100%), 4fr));
+  --grid-5: repeat(auto-fit, minmax(min(200px, 100%), 5fr));
+
+  /* Static Templates */
+  --grid-1: repeat(1, minmax(0, 1fr));
+  --grid-2-static: repeat(2, minmax(0, 1fr));
+  --grid-3-static: repeat(3, minmax(0, 1fr));
+  --grid-4-static: repeat(4, minmax(0, 1fr));
+  --grid-5-static: repeat(5, minmax(0, 1fr));
+
+  /* Border Radius  */
+  --radius: var(--radius-md);
+
+  --radius-sm: var(--sp-50);
+  --radius-md: var(--sp-100);
+  --radius-lg: var(--sp-200);
+  --radius-xl: var(--sp-400);
+  --radius-circle: 50vh;
+
+  /* Widths */
+  --width-250: 25%;
+  --width-500: 50%;
+  --width-700: 75%;
+  /* Text-width */
+  --text-width-sm: 25ch;
+  --text-width-md: 50ch;
+  --text-width-lg: 75ch;
+
+  /* Site Widths */
+  --wide-site-width: 85rem;
+  --standard-site-width: 72rem;
+  --narrow-site-width: 55rem;
+
+  /* ===
+    SITE SETTINGS
+    ===*/
+  /* Globals */
+  --site-text-width: var(--text-width-lg);
+
+  /* site focus style */
+  --site-focus-style:
+    var(--site-focus-color), var(--site-focus-thickness), var(--site-focus-line);
+  --site-focus-thickness: 0.3125rem;
+  --site-focus-line: solid;
+  --site-focus-color: var(--primary-500);
+  --site-focus-radius: var(--site-radius);
+
+  --selection-bg-color: color-mix(in srgb, var(--primary-mid) 50%, transparent);
+  --selection-text-color: var(--white);
+
+  /* Scrollbar variables */
+  --scrollbar-color: var(--primary-mid);
+  --scrollbar-track-color: var(--site-color);
+  --scrollbar-size: 0.9rem;
+  --scrollbar-border-radius: var(--radius-md);
+
+  /* Global Animation */
+  --site-transition-duration: 0.3s;
+  --site-transition-timing-function: ease-in-out;
+  --site-transition: all var(--site-transition-duration)
+    var(--site-transition-timing-function);
+
+  /* Gutter */
+  --gutter: 1rem;
+  /*===
+    COMPONENT FRAMEWORK 
+    ===*/
+
+  /* Buttons */
+
+  /* Base button variables */
+  --btn-padding-inline: var(--sp-100);
+  --btn-padding-block: var(--sp-200);
+  --btn-padding: var(--btn-padding-inline) var(--btn-padding-block);
+  --btn-radius: var(--radius);
+  --btn-font-weight: var(--fw-bold);
+  --btn-animation:
+    background-color var(--site-transition-duration)
+      var(--site-transition-timing-function),
+    color var(--site-transition-duration) var(--site-transition-timing-function);
+  --btn-hover-radius: var(--radius-lg);
+
+  /* Primary Button Styles */
+  --primary-btn-bg: var(--primary);
+  --primary-btn-color: var(--white);
+  --primary-btn-font-weight: var(--btn-font-weight);
+  --primary-btn-padding: var(--btn-padding);
+  --primary-btn-radius: var(--btn-radius);
+  --primary-btn-animation: var(--btn-animation);
+  --primary-btn-hover-bg: var(--primary-dark);
+  --primary-btn-hover-color: var(--white);
+  --primary-btn-hover-border-radius: var(--btn-hover-radius);
+
+  /* Seccondary Button Styles */
+  --secondary-btn-bg: var(--secondary);
+  --secondary-btn-color: var(--white);
+  --secondary-btn-font-weight: var(--btn-font-weight);
+  --secondary-button-padding: var(--btn-padding);
+  --secondary-btn-radius: var(--btn-radius);
+  --secondary-btn-animation: var(--btn-animation);
+  --secondary-btn-hover-bg: var(--secondary-dark);
+  --secondary-btn-hover-color: var(--white);
+  --secondary-btn-hover-border-radius: var(--btn-hover-radius);
+
+  /* Tertiary Button Styles */
+  --tertiary-btn-bg: var(--tertiary);
+  --tertiary-btn-color: var(--white);
+  --tertiary-btn-font-weight: var(--btn-font-weight);
+  --tertiary-button-padding: var(--btn-padding);
+  --tertiary-btn-radius: var(--btn-radius);
+  --tertiary-btn-animation: var(--btn-animation);
+  --tertiary-btn-hover-bg: var(--tertiary-dark);
+  --tertiary-btn-hover-color: var(--white);
+  --tertiary-btn-hover-border-radius: var(--btn-hover-radius);
+
+  /* Cards */
+  --card-padding-block: var(--sp-150);
+  --card-padding-inline: var(--sp-250);
+  --card-padding: var(--card-padding-inline) var(--card-padding-block);
+  --card-radius: var(--radius-md);
+  --card-gap: calc(var(--gap-md) / 2);
+  --card-heading-font-size: var(--fs-h4);
+  --card-body-font-size: var(--fs-p);
+
+  /* Primary Card styles */
+  --primary-card-bg: var(--primary);
+  --primary-card-color: var(--white);
+  --primary-card-heading-font-size: var(--card-heading-font-size);
+  --primary-card-body-font-size: var(--card-body-font-size);
+  --primary-card-padding: var(--card-padding);
+  --primary-card-radius: var(--card-radius);
+  --primary-card-gap: var(--card-gap);
+
+  /* Seccondary Card styles */
+  --secondary-card-bg: var(--secondary);
+  --secondary-card-color: var(--white);
+  --secondary-card-heading-font-size: var(--card-heading-font-size);
+  --secondary-card-body-font-size: var(--card-body-font-size);
+  --secondary-card-padding: var(--card-padding);
+  --secondary-card-radius: var(--card-radius);
+  --secondary-card-gap: var(--card-gap);
+
+  /* Tertiary Card styles */
+  --tertiary-card-bg: var(--tertiary);
+  --tertiary-card-color: var(--white);
+  --tertiary-card-heading-font-size: var(--card-heading-font-size);
+  --tertiary-card-body-font-size: var(--card-body-font-size);
+  --tertiary-card-padding: var(--card-padding);
+  --tertiary-card-radius: var(--card-radius);
+  --tertiary-card-gap: var(--card-gap);
+
+  /* Forms */
+  /* Base variables */
+  --input-padding-inline: var(--sp-150);
+  --input-padding-block: var(--sp-200);
+  --input-padding: var(--input-padding-inline) var(--input-padding-block);
+  --input-font-size: calc(var(--fs-links) / 1.5);
+  --input-radius: var(--radius-md);
+  --input-radius-focus: var(--radius-lg);
+  --input-transition: border-radius var(--site-transition-duration) ease-in;
+  --input-focus-line: 3px solid;
+  
+
+  /* Primary Input Styles */
+  --primary-input-bg: var(--primary-ultra-light);
+  --primary-input-color: var(--surface-mid);
+  --primary-input-padding: var(--input-padding);
+  --primary-input-font-size: var(--input-font-size);
+  --primary-input-radius: var(--input-radius);
+  --primary-input-focus-ring-color: var(--primary-500);
+  --primary-input-focus-ring-thickness: var(--site-focus-thickness);
+  --primary-input-focus-ring-style: var(--site-focus-line);
+  --primary-input-focus-ring:
+    var(--primary-input-focus-ring-color),
+    var(--primary-input-focus-ring-thickness),
+    var(--primary-input-focus-ring-style);
+  --primary-input-radius-focus: var(--input-radius-focus);
+  --primary-input-transition: var(--input-transition);
+
+  /* Seccondary Input Styles */
+  --secondary-input-bg: var(--secondary-ultra-light);
+  --secondary-input-color: var(--surface-mid);
+  --secondary-input-padding: var(--input-padding);
+  --secondary-input-font-size: var(--input-font-size);
+  --secondary-input-radius: var(--input-radius);
+  --secondary-input-radius-focus: var(--input-radius-focus);
+  --secondary-input-focus-ring-color: var(--secondary-500);
+  --secondary-input-focus-ring-thickness: var(--site-focus-thickness);
+  --secondary-input-focus-ring-style: var(--site-focus-line);
+  --secondary-input-focus-ring:
+    var(--secondary-input-focus-ring-color),
+    var(--secondary-input-focus-ring-thickness),
+    var(--secondary-input-focus-ring-style);
+  --secondary-input-transition: var(--input-transition);
+
+  /* Tertiary Input Styles */
+  --tertiary-input-bg: var(--tertiary-ultra-light);
+  --tertiary-input-color: var(--surface-mid);
+  --tertiary-input-padding: var(--input-padding);
+  --tertiary-input-font-size: var(--input-font-size);
+  --tertiary-input-radius: var(--input-radius);
+  --tertiary-input-radius-focus: var(--input-radius-focus);
+  --tertiary-input-focus-ring-color: var(--tertiary-500);
+  --tertiary-input-focus-ring-thickness: var(--site-focus-thickness);
+  --tertiary-input-focus-ring-style: var(--site-focus-line);
+  --tertiary-input-focus-ring:
+    var(--tertiary-input-focus-ring-color),
+    var(--tertiary-input-focus-ring-thickness),
+    var(--tertiary-input-focus-ring-style);
+  --tertiary-input-transition: var(--input-transition);
+
+  /* Pills and tags */
+  /* Base Variables */
+  --pill-bg: var(--white);
+  --pill-color: var(--black);
+  --pill-font-weight: var(--fw-700);
+  --pill-letter-spacing: var(--ls-sm);
+  --pill-padding-block: var(--sp-50);
+  --pill-padding-inline: var(--sp-100);
+  --pill-padding: var(--pill-padding-block) var(--pill-padding-inline);
+  --pill-radius: var(--radius-sm);
+
+  /* Primary Pill Styles */
+  --primary-pill-bg: var(--primary-ultra-light);
+  --primary-pill-color: var(--primary-mid);
+  --primary-pill-font-weight: var(--fw-700);
+  --primary-pill-letter-spacing: var(--ls-sm);
+  --primary-pill-padding-block: var(--sp-50);
+  --primary-pill-padding-inline: var(--sp-100);
+  --primary-pill-padding: var(--primary-pill-padding-block)
+    var(--primary-pill-padding-inline);
+  --primary-pill-radius: var(--radius-sm);
+
+  /* Secondary Pill Styles */
+  --secondary-pill-bg: var(--secondary-ultra-light);
+  --secondary-pill-color: var(--secondary-mid);
+  --secondary-pill-font-weight: var(--fw-700);
+  --secondary-pill-letter-spacing: var(--ls-sm);
+  --secondary-pill-padding-block: var(--sp-50);
+  --secondary-pill-padding-inline: var(--sp-100);
+  --secondary-pill-padding: var(--secondary-pill-padding-block)
+    var(--secondary-pill-padding-inline);
+  --secondary-pill-radius: var(--radius-sm);
+
+  /* Tertiary Pill Styles */
+  --tertiary-pill-bg: var(--tertiary-ultra-light);
+  --tertiary-pill-color: var(--tertiary-mid);
+  --tertiary-pill-font-weight: var(--fw-700);
+  --tertiary-pill-letter-spacing: var(--ls-sm);
+  --tertiary-pill-padding-block: var(--sp-50);
+  --tertiary-pill-padding-inline: var(--sp-100);
+  --tertiary-pill-padding: var(--tertiary-pill-padding-block)
+    var(--tertiary-pill-padding-inline);
+  --tertiary-pill-radius: var(--radius-sm);
+}

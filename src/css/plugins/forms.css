@@ -1,0 +1,51 @@
+/* 
+The forms plugin looks at your HTML, it'and apply styles for forms, and atomic form components.
+
+- add a class of 'site-form' to the form element. This will automatically bring in the styles for a simple form layout.
+- the '.form-feild' class controls the individual feilds
+
+All plugin content is wrapped in a layer called `champ-forms`, which is a custom layer for ChampCSS. This allows you to easily override the styles in your own CSS files if needed.
+*/
+
+@layer champ-forms, custom-forms;
+@layer custom-forms {
+    /* Add your custom styles here */
+}
+@layer champ-forms {
+    /*Form */
+    .site-form {
+        /* controls */
+        --form-gap: var(--gap-lg);
+        --form-feild-row-gap: var(--gap-md);
+
+        /* code */
+        display: grid;
+        gap: var(--gap-lg)
+    }
+
+    .site-form__input-row {
+        display: grid;
+        gap: var(--gap-sm);
+
+        :has(>&) {
+            container-type: inline-size;
+        }
+        @container (inline-size > 810px) {
+        grid-template-columns: var(--grid-2-static);
+        }
+    }
+    .form-feild {
+        background: var(--surface-ultra-light);
+        border: none;
+        padding: var(--input-padding);
+        border-radius: var(--primary-input-radius);
+        font: var(--input-font-size) ;
+        transition: var(--input-transition);
+        /* Focus styles */
+        &:focus,
+        &:focus-within {
+            border: var(--primary-input-focus-ring);
+        
+        }
+    }
+}

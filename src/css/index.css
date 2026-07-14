@@ -1,0 +1,22 @@
+/* 
+    This is the bundler file that gets loaded onto the front end. No custom CSS content should be written directly in this file. Feel free to customize this structure to fit your project. Do make sure that any new files get loaded into this document, or else it will not get loaded on the website!
+
+    If you create a new subfolder in the project, it's ideal for you to create an index.css file for that specific directory. It would function similarly to this document, but it would be responsible for loading content in that directory. The whole point is that you do import 50 individual documents into this file.
+*/
+
+@import url(reset.css); /* This is the global reset for the entire website  */
+@import url(utils/index.css); /* This is the bundler file for the utilities directory. See individuals file for additional documentation  */
+@import url(plugins/index.css); /* This is the bundler file for the plugins directory. A plug-in is a tool that helps you build content facter. NOTE, PLUGINS TOUCH YOUR HTML.  If you don't like the idea of ChampCSS having an impact on your HTML, you can simply delete this directory from your project, and go back to using the core CSS variables just like you did before. See individual files for additional documentation */
+@import url(custom.css); /* Override ChampCSS content here */
+@import url(styles.css); /* Write your custom CSS content here /* 
+
+    CODE CREDITS
+
+    reset compiled from Andy Bell's A (more) modern CSS Reset - https://piccalil.li/blog/a-more-modern-css-reset/
+    and Kevin Powells Reset - https://codepen.io/kevinpowell/pres/GRVoWOe?editors=0100
+
+    container followed by My top 5 most popular front-end tips by Kevin Powell - https://www.youtube.com/watch?v=DGOeyJjq80g&t=1132s
+
+    screen reader only class gotten from - https://www.accessibility-developer-guide.com/examples/hiding-elements/visually/
+    
+*/

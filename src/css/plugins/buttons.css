@@ -1,0 +1,149 @@
+/* 
+    This is the ChampCSS buttons plugin. It is used to easily create button content through a variety of variants and styles. NOTE: this plugin has a lot of classes, so if you're using a certain style as a default, you might want to consider baking it into the standard .standard-btn class.
+    The content in this file is layered under the `chapmp-btns` layer, which is a custom layer for ChampCSS. This allows you to easily override the styles in your own CSS files if needed.
+
+    Here's a brief overview of how this plugin works:
+    - The `.standard-btn` class is the base class for all buttons. It includes the default styles for buttons.
+    - The `.btn-secondary` class is a variant of the `.standard-btn` class. It includes the styles for secondary buttons.The same qoes for the `.btn-tertiary` and `.btn-neutral` classes.
+    - The `.btn-outline-primary`, `.btn-outline-secondary`, `.btn-outline-tertiary`, and `.btn-outline-neutral` classes are used to create outlined buttons. They include the styles for outlined buttons.
+    - The `.btn-radius-block`, `.btn-radius-pill`, `.btn-size-sm`, and `.btn-size-lg` classes are utility classes that can be used to change the border radius and size of buttons.
+
+*/
+/* Initiating layers */
+@layer champ-btns, custom-btns;
+@layer custom-btns {
+  /* Custom button classes, or overrides go here */
+}
+
+@layer chapmp-btns {
+  [data-btn] {
+    padding: var(--btn-padding);
+    border-radius: var(--btn-radius);
+    transition: var(---btn-animation);
+  }
+  .standard-btn {
+    background-color: var(--primary-btn-bg);
+    color: var(--primary-btn-color);
+
+    font-weight: var(--primary-btn-font-weight);
+
+    &:hover,
+    &:focus {
+      background-color: var(--primary-btn-hover-bg);
+    }
+  }
+
+  /* variants */
+  .btn-secondary {
+    background-color: var(--secondary-btn-bg);
+    color: var(--secondary-btn-color);
+    font-weight: var(--secondary-btn-font-weight);
+
+    &:hover,
+    &:focus {
+      background-color: var(--secondary-btn-hover-bg);
+    }
+  }
+
+  .btn-tertiary {
+    background-color: var(--tertiary-btn-bg);
+    color: var(--tertiary-btn-color);
+    font-weight: var(--tertiary-btn-font-weight);
+    border-radius: var(--tertiary-btn-radius);
+
+    &:hover,
+    &:focus {
+      background-color: var(--tertiary-btn-hover-bg);
+    }
+  }
+
+  .btn-neutral {
+    background-color: var(--surface-dark);
+    color: var(--white);
+
+    &:hover,
+    &:focus {
+      background-color: var(--surface-mid);
+    }
+  }
+  .btn-neutral-light {
+    background-color: var(--white);
+    color: var(--surface-dark);
+
+    &:hover,
+    &:focus {
+      background-color: var(--surface-light);
+    }
+  }
+  /* Outlines */
+  .btn-outline-primary {
+    --btn-theme: var(--primary-mid);
+    border: 3px solid var(--btn-theme);
+    background-color: transparent;
+    color: var(--btn-theme);
+
+    &:hover,
+    &:focus {
+      background-color: var(--btn-theme);
+      color: var(--white);
+    }
+  }
+
+  .btn-outline-secondary {
+    --btn-theme: var(--secondary-mid);
+    border: 3px solid var(--btn-theme);
+    background-color: transparent;
+    color: var(--btn-theme);
+
+    &:hover,
+    &:focus {
+      background-color: var(--btn-theme);
+      color: var(--white);
+    }
+  }
+
+  .btn-outline-tertiary {
+    --btn-theme: var(--tertiary-mid);
+    border: 3px solid var(--btn-theme);
+    background-color: transparent;
+    color: var(--btn-theme);
+
+    &:hover,
+    &:focus {
+      background-color: var(--btn-theme);
+      color: var(--white);
+    }
+  }
+
+  .btn-outline-neutral {
+    --btn-theme: var(--surface-dark);
+    border: 3px solid var(--btn-theme);
+    background-color: transparent;
+    color: var(--btn-theme);
+
+    &:hover,
+    &:focus {
+      background-color: var(--btn-theme);
+      color: var(--white);
+    }
+  }
+  .btn-neutral-light-outline {
+    --btn-theme: var(--white);
+    border: 3px solid var(--btn-theme);
+    background-color: transparent;
+    color: var(--btn-theme);
+
+    &:hover,
+    &:focus {
+      background-color: var(--btn-theme);
+      color: var(--black);
+    }
+  }
+  /* Automatic button styling  */
+  [class$="-btn"] {
+    padding: var(--btn-padding);
+    font-weight: var(--btn-font-weight);
+    border-radius: var(--btn-radius);
+    transition: var(--btn-animation);
+  }
+}

@@ -1,0 +1,34 @@
+---
+// Component imports
+import HeadTag from "./head-tag.astro";
+import Header from "../components/header/index.astro";
+import Footer from "../components/footer/index.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+    author?: string;
+    keywords?: string[];
+    noCta?: boolean;
+    noHeader?: boolean;
+    noFooter?: boolean;
+}
+const { title, description, author, keywords, noCta = false , noHeader = false, noFooter = false} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+	<HeadTag {title} {description} {author} {keywords}/>
+	<body>
+        <a href="#main" class="skip">Skip to Main content</a>
+        <a href="#footer" class="skip">Skip to footer</a>
+        {!noHeader && <Header hasCta/>}
+    <main id="main">
+        <slot />
+        <!-- {!noCta && <CtaParksville /> } -->
+       
+    </main>
+        <Footer hasCards>
+            <!-- Put content into the right side with the "slot="right"" attribute -->
+        </Footer>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+---
+interface Props {
+    width?: 'standard' | 'wide' | 'narrow';
+    customClass?: string;
+    smartSpacing?: boolean;
+}
+const { width = 'standard', customClass, smartSpacing } = Astro.props;
+const widthClass = width === 'standard' ? 'container' : width === 'wide' ? 'container-wide' : 'container-narrow';
+---
+<div class:list={[
+    widthClass,
+    customClass
+]} 
+    {...(smartSpacing && { 'data-smart-spacing': '' })}>
+    <slot />
+</div>

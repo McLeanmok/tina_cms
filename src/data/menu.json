@@ -1,0 +1,28 @@
+[
+    
+    {
+        "text": "Home",
+        "url": "/",
+        "title": "Go to the home page "
+    },
+    {
+        "text": "About",
+        "url": "#",
+        "title": "Learn more about us"
+    },
+    {
+        "text": "Reviews",
+        "url": "#",
+        "title": "Browse the reviews we have received"
+    },
+    {
+        "text": "Blog",
+        "url": "#",
+        "title": "Read our blog"
+    },
+    {
+        "text": "Contact",
+        "url": "#",
+        "title": "Get in touch with us"
+    }
+]

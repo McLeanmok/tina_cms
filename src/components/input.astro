@@ -1,0 +1,22 @@
+---
+// props 
+interface Props {
+    type: "text"|"email" |"textarea";
+    name: string;
+    id: string;
+    placeholder: string;
+    required?: boolean;
+    value?: string;
+    customClasses?: string;
+    ariaLabel: string;
+}
+const { type, name, id, placeholder, required, value, customClasses , ariaLabel} = Astro.props;
+---
+
+
+<label for={id} class="sr-only">{ariaLabel}</label>
+{
+
+type === "textarea" ? <textarea name={name} id={id} placeholder={placeholder} required={required} class={customClasses || "form-feild"} value={value} aria-label={ariaLabel} title={ariaLabel} /> 
+: <input type={type} name={name} id={id} placeholder={placeholder} required={required} class={customClasses || "form-feild"} aria-label={ariaLabel} value={value} title={ariaLabel} /> 
+}

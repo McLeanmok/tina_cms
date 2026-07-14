@@ -1,0 +1,209 @@
+/* 
+  This is a reset that controls the entire website 
+*/
+@layer champ-reset, custom-reset;
+
+@layer custom-reset {
+  /* Add your custom reset styles here */
+}
+@layer champ-reset {
+  /* Universal selector reset */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Prevent font size inflation */
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-family: var(--ff-body);
+  }
+
+  /* Body Tag Defaults */
+  body {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background: var(--body-color);
+  }
+
+  /* Removing Bottom Margins from elements */
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin-block-end: 0;
+  }
+
+  /* Removing Margin on various elements */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  /* Balance text wrapping on headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    text-wrap: pretty;
+  }
+  /* Line heights  */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--ff-headings);
+    line-height: var(--lh-headings);
+  }
+  p {
+    line-height: var(--lh-body);
+  }
+  /* Font Sizes */
+  h1 {
+    font-size: var(--fs-h1);
+  }
+  h2 {
+    font-size: var(--fs-h2);
+  }
+  h3 {
+    font-size: var(--fs-h3);
+  }
+  h4 {
+    font-size: var(--fs-h4);
+  }
+  h5 {
+    font-size: var(--fs-h5);
+  }
+  h6 {
+    font-size: var(--fs-h6);
+  }
+
+  /* Paragraph Styles */
+  p,
+  
+  figcaption {
+    max-inline-size: var(--site-text-width);
+  }
+
+  /* List styles */
+  ul[class],
+  ol[class] {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  /* Default section padding */
+  section {
+    padding-block: var(--section-padding-md);
+    padding-inline: var(--gutter);
+  }
+
+  /* Link defaults  */
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--black);
+  }
+  a:focus,
+  a:focus-within {
+    border: 0;
+    border: var(--site-focus-style);
+    border-radius: var(--site-focus-radius);
+  }
+
+  /* Images */
+  img,
+  svg,
+  video,
+  figure,
+  figcaption,
+  picture {
+    display: block;
+    border-radius: 8px;
+    max-inline-size: 100%;
+    block-size: auto;
+    margin: 0;
+  }
+
+  /* custom selecton color  */
+  ::selection {
+    background: var(--selection-bg-color);
+    color: var(--selection-text-color);
+  }
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    inline-size: var(--scrollbar-size);
+    block-size: var(--scrollbar-size);
+    background: var(--scrollbar-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-track-color);
+    border-radius: var(--scrollbar-border-radius);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  /* Inherit fonts for inputs and buttons */
+  input,
+  button,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  /* Taking away the border and padding from feildset elements  */
+  fieldset {
+    border: 0;
+    padding: 0;
+  }
+
+  /* Mzing form elements (inputs, textareas) full width */
+  input,
+  textarea {
+    width: 100%;
+  }
+  /* Make sure textareas without a rows attribute are not tiny */
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  /* Global responsive behaviors */
+  @media (max-width: 768px) {
+    p {
+      text-align: left;
+      line-height: calc(var(--lh-body) * 1.65);
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-align: left;
+    }
+  }
+}

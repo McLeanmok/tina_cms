@@ -1,0 +1,15 @@
+---
+import Input from './input.astro';
+---
+ 
+ <form  method="POST" class="site-form">
+    <input type="hidden" >
+            <div class="site-form__input-row">
+                <Input type="text" name="first_name" id="first_name" placeholder="First Name" ariaLabel="Enter your first name" />
+                <Input type="text" name="last_name" id="last_name" placeholder="Last Name" ariaLabel="Enter your Last name" />
+            </div> <!-- end input row -->
+            <Input type="text" name="subject" id="subject" placeholder="Subject" ariaLabel="Enter a subject" />
+            <Input type="email" name="email" id="email" placeholder="Email" ariaLabel="Enter your email" />
+            <Input type="textarea" name="message" id="message" placeholder="Message" ariaLabel="Enter your message" />
+            <button type="submit" class="standard-btn">Send Message</button>
+        </form>

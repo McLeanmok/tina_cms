@@ -1,0 +1,12 @@
+    /* 
+    This is the bundler file for the utilities directory. It loads the variables and utility classes into the master index.css file.
+
+    === utilities vs variables ==
+
+    ChampCSS is a varible-first, custom class based framework. This is the ideal approach to producing modern, maintainable and scalable websites. You can customize the variables all your want. You can use your own organization system for classes, and it keeps your markup very clean.
+
+    utility classes should be used very sparingly. I will document this in the class file, but it's not a good idea to litter your markup with classes. It becomes a mess really quick, and it's impossible to maintain a website, because styles are scattered everywhere, and there's no source of truth. That said, it's really good for building something just for a proof of concept, without committing anything to your stylesheet, or you may have something that doesn't repeat again. Utility classes work great for those situations.
+*/
+
+@import url(classes.css);
+@import url(variables.css);

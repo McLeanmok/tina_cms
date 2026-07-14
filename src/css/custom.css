@@ -1,0 +1,5 @@
+/* 
+    this file is for any overrides to variables in ChampCSS. Let's face it, the variables file can be scary, especially if you are new. You have to scroll through a thousand lines to edit the variables that you are looking for. Also, utilities are living in separate files. You need one single source of truth that is simple to use.
+
+    You can override or change anything in ChampCSS from here. You can even do your own frameworking by adding custom variables or utility classes. This document is loaded right above style.css, so anything that you define here will override the defaults.
+*/

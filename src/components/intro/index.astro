@@ -1,0 +1,60 @@
+---
+// importing block stylesheet
+import Button from "../button.astro";
+import "./styles.css"
+
+interface Props {
+    Eyebrow?: string;
+    hasEyebrow?: boolean;
+    marketingHeading: string;
+    lede: string;
+    blockName?: string;
+    situation?: "hero" | "content-section";
+    alignment?: "left" | "center" | "right";
+    HasButtons?: boolean;
+    buttonOneText?: string;
+    buttonOneHref?: string;
+    hasSecondBtn?: boolean;
+    buttonTwoText?: string;
+    buttonTwoHref?: string;
+    theme: "dark" | "light";
+}
+
+const {
+    alignment = "center",
+    Eyebrow,
+    hasEyebrow = true,
+    marketingHeading,
+    lede,
+    blockName,
+    situation = "content-section",
+    HasButtons = false,
+    buttonOneText,
+    buttonOneHref,
+    hasSecondBtn = false,
+    buttonTwoText,
+    buttonTwoHref,
+    theme ="dark",
+} = Astro.props;
+
+const headingMapping = {
+    hero: "h1",
+    "content-section": "h2",
+} as const;
+
+const Tag = headingMapping[situation];
+const MarketingHeadingTag = hasEyebrow ? "p" : Tag;
+---
+<article class={blockName && `${blockName}-intro`} data-intro-alignment={alignment} data-intro-theme={theme}>
+    {hasEyebrow && (
+        <Tag class={blockName && `${blockName}-intro__eyebrow`}>{Eyebrow}</Tag>
+    )}
+    <MarketingHeadingTag class={blockName && `${blockName}-intro__marketing-heading`} data-size={hasEyebrow ? situation : undefined}>{marketingHeading}</MarketingHeadingTag>
+    <p class={blockName && `${blockName}-intro__lede`}>{lede}</p>
+    {HasButtons && (
+        <div class={blockName && `${blockName}-intro__buttons`}>
+          <Button text={buttonOneText} href={buttonOneHref} theme="primary" />
+          {hasSecondBtn && <Button text={buttonTwoText} href={buttonTwoHref} theme="secondary" />}
+        </div>
+    )}
+</article>

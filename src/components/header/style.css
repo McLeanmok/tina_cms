@@ -1,0 +1,194 @@
+/* This is the header CSS file. The rules in here have fallbacks if you don't have champcss in your project */
+
+.site-header {
+  /* Variables for the entire header component */
+  /* Base styles */
+  --site-header-line-thickness: 3px;
+  --site-header-timing-function: ease-in-out;
+  --site-header-transition-duration: 0.3s;
+  --site-header-font-weight: 700;
+
+  --site-header-padding-block: var(--section-padding-xs, 1rem);
+  --site-header-padding-block: var(--gutter, 1rem);
+  --site-header-bg: var(--white, #fff);
+  --site-header-position: sticky;
+  --site-header-position-index: 0;
+
+  --site-header-nav-gap: var(--gap-md, 1rem);
+  --site-header-navlink-clickable-area: 0.5rem;
+
+  --site-header-burger-line-height: 3px;
+  --site-header-burger-line-color: var(--black, #000);
+  --site-header-burger-gap: 5px;
+
+  --site-header-mobile-nav-transition-duration: 0.5s;
+  --site-header-mobile-nav-transition-timing-function: ease-in-out;
+
+  --site-header-mobile-nav-padding: var(--section-padding-xs, 1rem);
+
+  /* Active state */
+  --site-header-active-link-color: var(--site-color, #000);
+  --site-header-active-link-font-weight: 700;
+  /* Rollover effects */
+  --site-header-hover-transition-duration: var(
+    --site-header-transition-duration
+  );
+
+  --site-header-navlink-rollover-timing-function: var(
+    --site-header-timing-function
+  );
+  --site-header-navlink-rollover-duration: 0.3s;
+  --site-header-navlink-rollover-bg: var(--site-color;, #000);
+
+  /* Code */
+  padding: var(--site-header-padding-block) var(--site-header-padding-block);
+  background: var(--site-header-bg);
+  position: var(--site-header-position);
+  position: relative;
+  top: var(--site-header-position-index);
+  z-index: 999;
+}
+
+/* Inner style */
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Nav styles */
+.site-header__nav-links {
+  display: flex;
+  gap: calc(
+    var(--site-header-navlink-clickable-area) - var(--site-header-nav-gap)
+  );
+  /* Styling them for mobile  */
+}
+/* Hiding the nav on desktop */
+.site-header__nav {
+  @media (width < 730px) {
+    display: none;
+  }
+}
+/* Showing the nav on mobile */
+.site-header__nav-toggle:checked ~ .site-header__nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: color-mix(in srgb, var(--site-header-bg) 85%, transparent);
+  padding: var(--site-header-mobile-nav-padding);
+  gap: var(--site-header-nav-gap);
+  ul  {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Link styles  */
+.site-header__nav-link {
+  padding: var(
+    --site-header-navlink-clickable-area
+  ); /* This makes the clickable area bigger without affecting the layout  Critical for accessibility */
+
+  transition: 0.3s;
+  /* Active state */
+  &[aria-current="page"] {
+    color: var(--site-header-active-link-color);
+    font-weight: var(--site-header-active-link-font-weight);
+  }
+  /* Hover State */
+  &:hover,
+  &:focus {
+    font-size: var(--site-header-hover-font-weight);
+  }
+}
+/* styling the last link like a button - this content will only load if hasCta is true */
+[data-nav-layout="cta"] li:last-child {
+  --site-header-cta-offset: 20rem;
+
+  /* Button styles */
+  a {
+    background-color: var(--primary-btn-bg);
+    color: var(--primary-btn-color);
+    padding: var(--primary-btn-padding);
+    font-weight: var(--primary-btn-font-weight);
+    border-radius: var(--primary-btn-radius);
+    transition: var(--primary-btn-animation);
+
+    &::hover,
+    &:focus-visible {
+      background-color: var(--primary-btn-hover-bg);
+      color: var(--primary-btn-hover-color);
+    }
+  }
+
+  /* Handling the button on desktop + mobile  */
+@media (width > 730px) {
+  margin-left: var(--site-header-cta-offset);
+}
+@media (width < 730px) {
+  --site-header-cta-offset: 3rem;
+  margin-top: var(--site-header-cta-offset);
+}
+}
+/* Mobile styles */
+/* Hiding the checkbox - we don't need it */
+.site-header__nav-toggle {
+  display: none;
+}
+
+/* Label styles - this will act as our mobile menu icon */
+.site-header__nav-toggle-label {
+  /* Block styles */
+  cursor: pointer;
+  inline-size: 28px;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--site-header-burger-gap);
+  /* burger line styles */
+  span {
+    display: flex;
+    justify-content: flex-end;
+    inline-size: 100%;
+    block-size: var(--site-header-burger-line-height);
+    min-inline-size: 0;
+    min-block-size: 0;
+    background: var(--site-header-burger-line-color);
+    border-radius: 50px;
+    transition-property: scale, rotate, translate;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+  }
+  @media (width > 730px) {
+    display: none;
+  }
+}
+/* Animating the hamburger into an X when the checkbox is checked */
+.site-header__nav-toggle:checked ~ .site-header__nav-toggle-label {
+  span {
+    z-index: 2;
+  }
+  span:nth-child(1) {
+    rotate: 45deg;
+    translate: 0
+      calc(var(--site-header-burger-gap) + var(--site-header-burger-line-height));
+  }
+  span:nth-child(2) {
+    scale: 0;
+  }
+  span:nth-child(3) {
+    rotate: -45deg;
+    translate: 0
+      calc((var(--site-header-burger-gap) + var(--site-header-burger-line-height)) * -1);
+  }
+}

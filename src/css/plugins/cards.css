@@ -1,0 +1,133 @@
+/* 
+    The card plug-in is used to help style and maintain card content across the site.
+    It provides a consistent look and feel for card elements, ensuring they are visually appealing and functional.
+    Each utility class is backed by the card variables in the library, and can be easily customized. to your needs.
+
+    here is how it works:
+    - add a class of " standard card" to the containing block, and add the following classes to the child elements:
+    - .standard-card__heading - for the card title
+    - .standard-card__body - for the card paragraph text
+    - .standard-card__cta - for the card call to action button
+
+    There are also additional modifier classes available for customization:
+    - .standard-card--secondary - for a secondary card style
+    - .standard-card--tertiary - for a tertiary card style
+    - .card-size--sm - for a small card size
+    - .card-size--lg - for a large card size
+    - .card-radius--sm - for a small card radius
+    - .card-radius--block - for no card radius
+    - .card-radius--lg - for a large card radius
+    
+    - .standard-card__lead - for a lead element, which is styled to be uppercase and bold. This is completely optional.
+*/
+
+/* Initiating layers */
+@layer champ-cards, card-extras, custom-cards;
+
+@layer custom-cards {
+  /* Custom card classes, or overrides go here */
+}
+
+@layer champ-cards {
+  /* Standard Card */
+  .standard-card {
+    display: grid;
+    gap: var(--card__gap);
+    background-color: var(--primary-card__bg);
+    color: var(--primary-card__color);
+    padding: var(--primary-card__padding);
+    border-radius: var(--primary-card__radius);
+  }
+  .standard-card__heading {
+    font-size: var(--card__heading-font-size);
+  }
+  .standard-card__body {
+    font-size: var(--card__body-font-size);
+    margin: auto 0;
+  }
+  .standard-card__btn {
+    justify-self: flex-start;
+    background-color: var(--white);
+    color: var(--black);
+    padding: var(--btn-padding);
+    font-weight: var(--btn-font-weight);
+    border-radius: var(--btn-radius);
+
+    &:hover,
+    &:focus {
+      background-color: var(--primary-900__trans-900);
+      transition: var(--btn-animation);
+    }
+  }
+
+  /* Variants */
+  .standard-card--secondary {
+    display: grid;
+    gap: var(--card__gap);
+    background-color: var(--secondary-card__bg);
+    color: var(--secondary-card__color);
+    padding: var(--secondary-card__padding);
+    border-radius: var(--secondary-card__radius);
+  }
+  .standard-card--tertiary {
+    display: grid;
+    gap: var(--card__gap);
+    background-color: var(--tertiary-card__bg);
+    color: var(--tertiary-card__color);
+    padding: var(--tertiary-card__padding);
+    border-radius: var(--tertiary-card__radius);
+  }
+
+  /* Automatic Card Styling */
+  [class$="-card"] {
+    padding: var(--card-padding);
+    display: grid;
+    gap: var(--card-gap);
+    border-radius: var(--card-radius);
+  }
+  [class$="-card__heading"] {
+    font-size: var(--card__heading-font-size);
+  }
+  [class$="-card__body"] {
+    font-size: var(--card__body-font-size);
+    margin: auto 0;
+  }
+}
+
+/* Modifier Classes */
+@layer card-extras {
+
+
+  /* Accent Headline class */
+  .standard-card__lead {
+    order: -1;
+    text-transform: uppercase;
+    font-weight: var(--fw-700);
+    letter-spacing: var(--ls-sm);
+  }
+
+  /* Accent Headline encased in a pill */
+  .standard-card__lead--pill {
+    justify-self: flex-start;
+    order: -1;
+    text-transform: uppercase;
+    font-weight: var(--pill__font-weight);
+    letter-spacing: var(--pill__letter-spacing);
+    background-color: var(--pill__bg);
+    color: var(--pill__color);
+    padding: var(--pill__padding);
+    border-radius: var(--pill__radius);
+  }
+
+  /* Images */
+  .standard-card__media {
+    order: -1;
+    overflow: hidden;
+    border-radius: var(--site-radius);
+
+    img {
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+  }
+}

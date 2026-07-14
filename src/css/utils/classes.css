@@ -1,0 +1,74 @@
+/* 
+    This file contains the utility classes for ChampCSS. All the default utility classes are in a layer called "champ-classes", so that they are easy overidible by you. These classes have zero specificity, by design, so that you can override them easily.
+    You can add your own utility classes in the custom-classes layer in this file, or in a separate file. If you add them in a separate file, make sure to include it after this file in index.css for the utils directory. This will ensure that your classes take precedence over the default classes.
+
+    2 types of utility classes 
+
+    In ChampCSS land, there are two main types of utility classes. Core classes, and Prop classes. Core classes are stuff like your container, skip to main, and screen reader only that you use to expedite your workflow. There's very little consequence for using them. Prop classes on the other hand are similar to what Tailwind does. They give you a lot of classes that does one thing very well, and nothing more. CAUTION: use prop classes very sparingly. They can quickly make a mess out of your code, and there's no source of truth for styling, which makes it very difficult to maintain sites in the future.
+
+    … however, there's two possible use cases for prop classes 
+    1 - for quick proof of concepts or experimentation when you don't want to commit any styles to the stylesheet. For example, the stock template is built using prop classes, because I wanted to leave the CSS area blank
+    2 - If you are styling something, and you are 99.8% sure that it won't repeat
+
+    Note that the prop classes are wrapped in a cascade layer, so if you need to, just delete it.
+*/
+
+/* Initializing layers */
+@layer champ-classes, custom-classes;
+
+/* Custom Classes  */
+@layer custom-classes {
+  /* Add your custom classes here */
+}
+/* Champ Classes */
+@layer champ-classes {
+  /* Add your custom classes here */
+
+  /* Classes -- not every prop will get its own utility class. We only offer classes that would benefit you in building sites faster with best practices in mind */
+
+  /* Accessibility  */
+  .skip {
+    position: absolute;
+    z-index: 999;
+    left: -9999px;
+    opacity: 0;
+    padding: var(--sp-100);
+    background-color: var(--site-color);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    border: 0;
+
+    &:hover {
+      background-color: var(--site-hover-color);
+    }
+  }
+  .skip-to-main:focus {
+    left: 8%;
+    margin: var(--sp-100);
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+  /* Screen reader only class  */
+  .sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Contaner */
+  .container-wide {
+    width: min(var(--wide-site-width), 100% - 4rem);
+    margin: auto;
+  }
+  .container {
+    width: min(var(--standard-site-width), 100% - 4rem);
+    margin: auto;
+  }
+  .container-narrow {
+    width: min(var(--narrow-site-width), 100% - 4rem);
+    margin: auto;
+  }
+}
