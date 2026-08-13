@@ -8,8 +8,9 @@
 @import url(utils/index.css); /* This is the bundler file for the utilities directory. See individuals file for additional documentation  */
 @import url(plugins/index.css); /* This is the bundler file for the plugins directory. A plug-in is a tool that helps you build content facter. NOTE, PLUGINS TOUCH YOUR HTML.  If you don't like the idea of ChampCSS having an impact on your HTML, you can simply delete this directory from your project, and go back to using the core CSS variables just like you did before. See individual files for additional documentation */
 @import url(custom.css); /* Override ChampCSS content here */
-@import url(styles.css); /* Write your custom CSS content here /* 
+@import url(styles.css); /* Write your custom CSS content here */
 
+/*
     CODE CREDITS
 
     reset compiled from Andy Bell's A (more) modern CSS Reset - https://piccalil.li/blog/a-more-modern-css-reset/
@@ -18,5 +19,4 @@
     container followed by My top 5 most popular front-end tips by Kevin Powell - https://www.youtube.com/watch?v=DGOeyJjq80g&t=1132s
 
     screen reader only class gotten from - https://www.accessibility-developer-guide.com/examples/hiding-elements/visually/
-    
 */

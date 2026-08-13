@@ -1,0 +1,10 @@
+/* Tidbits */
+.tidbit-loop__inner {
+    display: grid;
+    grid-template-columns: var(--grid-3);
+    gap: var(--grid-gap);
+}
+
+:where(.tidbit-card__heading, .article-card__heading ) {
+    font-size: var(--fs-h4);
+}

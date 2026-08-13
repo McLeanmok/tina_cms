@@ -20,6 +20,7 @@
     padding: var(--btn-padding);
     border-radius: var(--btn-radius);
     transition: var(--btn-animation);
+    justify-self: flex-start;
   }
   .standard-btn {
     background-color: var(--primary-btn-bg);
