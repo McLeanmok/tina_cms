@@ -1,12 +1,21 @@
 ---
 import Container from "../components/container.astro";
+import Intro from "../components/intro/index.astro";
+import MarketingOptin from "../components/marketing-opt-in/index.astro"
 import MainTemplate from "../templates/main-template.astro";
 ---
 <!-- customize this page to your projects requirements. This is simply a starting point  -->
-<MainTemplate title="ChampCSS Astro Theme" description="A starter theme for Astro using ChampCSS" author="Major Digital Projects" keywords={["Astro", "ChampCSS", "Starter Theme"]}>
-	<section>
+<MainTemplate title="TinaCMS POC" description="A quick lab to experiment with TinaCMS, and other advanced tools for my website." author="Mac Mylymok" >
+	<section class="home-hero">
 		<Container >
-			<h1>ChampCSS Astro Theme</h1>
+			<Intro blockName="home-hero" hasEyebrow={false} marketingHeading="TinaCMS Proof of Concept" lede="A quick lab to experiment with TinaCMS, and other advanced tools for my website." HasButtons buttonOneHref="/tidbits" buttonOneText="Tidbits" buttonTwoHref="/blog" buttonTwoText="View Posts"/>
 			</Container>	
 	</section> 
+
+	<!-- newsletter  -->
+	 <section class="newsletter">
+		<Container customClass="newsletter__inner">
+			<MarketingOptin heading="Join My Newsletter"/>
+		</Container>
+	 </section>
 </MainTemplate>

@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type tidbitCats = 'tidbitsHtml' | 'tidbitsCss' | 'tidbitsAudio';
+
+type Props = {
+  content: CollectionEntry<tidbitCats>;
+};
+
+const { content } = Astro.props;
+const { title, lede, tags, pubDate } = content.data;
+---
+
+<article class="tidbit-card">
+  <h3 class="tidbit-card__heading">{title}</h3>
+  <time datetime={pubDate.toISOString()} class="tidbit-card__date">
+    {pubDate.toLocaleDateString(undefined, {
+      dateStyle: "medium",
+      timeZone: "UTC"
+    })}
+  </time>
+  <p class="tidbit-card__lede">{lede}</p>
+  <a href={`/tidbits/${content.id}`} class="standard-btn tidbit-card__link">Read</a>
+
+</article>

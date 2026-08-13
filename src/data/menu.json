@@ -17,8 +17,13 @@
     },
     {
         "text": "Blog",
-        "url": "#",
+        "url": "/blog",
         "title": "Read our blog"
+    },
+    {
+        "text": "Tidbits",
+        "title": "Learn tips that will help you work",
+        "url": "/tidbits"
     },
     {
         "text": "Contact",

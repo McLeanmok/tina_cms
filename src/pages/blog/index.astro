@@ -1,0 +1,31 @@
+---
+// component imports
+import Container from "../../components/container.astro";
+import MainTemplate from "../../templates/main-template.astro";
+import Intro from "../../components/intro/index.astro";
+import Article from "../../components/content-api/articles/article-card.astro"
+
+import { getCollection } from "astro:content";
+const articles = await getCollection("articles")
+---
+
+<MainTemplate title="Blog" description="Find all my brilliant blog articles here">
+    <section class="blog-hero">
+        <Container customClass="blog-hero__inner">
+            <Intro 
+            blockName="blog-hero"
+            hasEyebrow={false}
+            marketingHeading="Our Blog"
+            lede="Read our eloquently written articles and blog posts" />
+        </Container>
+    </section>
+
+    <!-- Blog Posts -->
+     <section class="post-gallery">
+        <Container customClass="pos-gallery__inner">
+            {articles.map((article) =>( <Article content={article}/>))}
+            <ul class="post-gallery__list">
+            </ul>
+        </Container>
+     </section>
+</MainTemplate>

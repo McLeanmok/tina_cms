@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import TidbitCard from '../../../components/content-api/tidbits/tidbit-card.astro';
+import MainTemplate from '../../../templates/main-template.astro';
+import Container from '../../../components/container.astro';
+
+type CollectionKey = 'tidbitsHtml' | 'tidbitsCss' | 'tidbitsAudio';
+
+export async function getStaticPaths() {
+  const CATEGORY_MAP = {
+    'tidbitsHtml': 'html',
+    'tidbitsCss': 'css',
+    'tidbitsAudio': 'audio',
+  } as const;
+
+  return Object.entries(CATEGORY_MAP).map(([collection, slug]) => ({
+    params: { category: slug },
+    props: { collection },
+  }));
+}
+
+const { category } = Astro.params;
+const { collection } = Astro.props as { collection: CollectionKey };
+
+const tidbits = await getCollection(collection);
+const sorted = tidbits.sort((a: { data: { pubDate: number; }; }, b: { data: { pubDate: number; }; }) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<MainTemplate title={"Tidbit Category:" + category}>
+<section class="tidbit-category-hero">
+    <Container width="standard" customClass=" tidbit-category-hero__inne">
+        <h1>{category.toUpperCase()} Tidbits</h1>
+    </Container>
+</section> <!-- End Hero -->
+
+<!-- loop -->
+ <section class="tidbit-loop">
+    <Container customClass='tidbit-loop__inner' width='standard'>
+{sorted.map((t: unknown) => <TidbitCard content={t} />)}
+    </Container>
+ </section>
+</MainTemplate>

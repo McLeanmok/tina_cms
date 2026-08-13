@@ -1,0 +1,37 @@
+---
+import MainTemplate from "../../templates/main-template.astro";
+import Container from "../../components/container.astro";
+import Intro from "../../components/intro/index.astro"
+
+// importing Content type 
+import { getAllTidbits } from "../../scripts/lib";
+import TidbitCard from "../../components/content-api/tidbits/tidbit-card.astro";
+
+const tidbits = await getAllTidbits();
+const sorted = tidbits.sort((a, b) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<MainTemplate title="Tidbits -- Tips and tricks from McLean Mylymok" description="Bite-Sized Insights from McLean Mylymok">
+
+    <section class="tidbit-hero">
+        <Container width="standard" customClass="tidbit-main-hero__inner">
+            <Intro 
+                blockName="tidbit-main-hero"
+                marketingHeading="Bite Sized Pieces of Content"
+                lede="Some lede Text"
+                hasEyebrow
+                Eyebrow="Tidbits"
+                />
+        </Container>
+    </section>
+    <section class="tidbit-loop">
+        <Container width="standard" customClass="tidbit-loop__inner">
+       {sorted.map((tidbit) => (
+  <TidbitCard content={tidbit} />
+))}
+            <h3></h3>
+        </Container>
+    </section>
+</MainTemplate>

@@ -1,0 +1,21 @@
+---
+// helper imports
+import type { CollectionEntry } from 'astro:content';
+
+// destructuring 
+const article = Astro.props.articles
+
+// collection entery
+type Props = {
+[x: string]: any;
+    content: CollectionEntry<'articles'>
+}
+
+// destructuring data 
+const { content } = Astro.props;
+const { title, lede, date } = content.data
+---
+
+<article class="article-card">
+    <h2>{title}</h2>
+</article>

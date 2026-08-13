@@ -1,0 +1,56 @@
+---
+import { getAllTidbits } from "../../scripts/lib";
+import TidbitCard from "../../components/content-api/tidbits/tidbit-card.astro";
+
+import MainTemplate from "../../templates/main-template.astro";
+import { render } from "astro:content";
+import Container from "../../components/container.astro";
+
+// getstaticpaths
+export async function getStaticPaths() {
+    const tidbits = await getAllTidbits();
+
+    return tidbits.map((tidbit) => ({
+        params: { slug: tidbit.id },
+        props: { tidbit }
+    }));
+}
+
+// destructuring stuff
+const {tidbit} = Astro.props;
+const {title, lede, tags, pubDate} = tidbit.data;
+const {Content} = await render(tidbit);
+
+const allTidbits = await getAllTidbits();
+// filter the array for related tidbits and exclude the current tidbit
+const related = allTidbits
+    .filter(t => t.collection === tidbit.collection && t.id !== tidbit.id)
+    .slice(0, 3);
+---
+<MainTemplate title={title} lede={lede} author="McLean Mylymok">
+    <!-- hero -->
+    <section class="tidbit-single-hero">
+        <Container width="standard" customClass="tidbit-single-hero__inner">
+            <h1 class="tidbit-single-hero__heading">{title}</h1>
+            <p class="tidbit-single-hero__lede">{lede}</p>
+        </Container>
+    </section>
+
+    <!-- Main Content -->
+     <section class="tidbit-main-content">
+        <Container width="standard" customClass="tidbit-main-content__inner">
+            <!-- Tidbit content -->
+            <article class="tidbit-main-content__content-wrapper">
+                <Content />
+            </article>
+
+            <!-- Related posts -->
+             <aside class="tidbit-main-content__sidebar">
+                <h3 class="tidbit-main-content__sidebar-heading">More in This Category</h3>
+                {
+                    related.map(t => <TidbitCard content={t} />)
+                }
+             </aside>
+        </Container>
+     </section>
+</MainTemplate>
