@@ -1,12 +1,15 @@
 /* This file contains styles for the footer. All key aspects are tokenized with fullbacks just in case ChampCSS is not being used */
 
 .site-footer {
-  /* TOKENS */
   --site-footer-padding: var(--section-padding-md, 4rem);
   --site-footer-gutter: var(--gutter, 2rem);
   --site-footer-base-bg-color: var(--surface, #111);
-  --site-footer-bg: color-mix(in srgb, var(--site-footer-base-bg-color) var(--site-footer-base-bg-color-lightness), transparent);
   --site-footer-base-bg-color-lightness: 15%;
+  --site-footer-bg: color-mix(
+    in srgb,
+    var(--site-footer-base-bg-color) var(--site-footer-base-bg-color-lightness),
+    transparent
+  );
   --site-footer-text-color: var(--black, #000);
   --site-footer-mixed-bg-color: var(--white, #fff);
   --site-footer-font-size: var(--fs-h4, 2.2806rem);
@@ -17,15 +20,13 @@
   --site-footer-card-line-width: 2px;
   --site-footer-active-font-weight: var(--fw-bold, 700);
   background: var(--site-footer-bg);
-
-  /* Active state */
-  [aria-current="page"] {
-    font-weight: var(--site-footer-active-font-weight);
-  }
 }
-/* Inner */
+
+.site-footer [aria-current="page"] {
+  font-weight: var(--site-footer-active-font-weight);
+}
+
 .site-footer__inner {
-  /* CODE */
   padding-block: var(--site-footer-padding);
   padding-inline: var(--site-footer-gutter);
   display: grid;
@@ -38,12 +39,12 @@
   grid-template-columns: var(--grid-3c, repeat(3, 1fr));
 }
 
-/* content groups */
 .site-footer__content-group {
   display: grid;
   gap: var(--site-footer-content-group-gap);
   align-items: center;
 }
+
 .site-footer__content-group-heading {
   font-size: var(--site-footer-font-size);
 }
@@ -53,19 +54,19 @@
   gap: var(--site-footer-nav-gap);
 }
 
-/* Cards -- this content will not loved until you enable it */
-/* This content is part of the body */
 .site-footer__card {
   display: grid;
-  gap: var(--site-footer-card-gap)
+  gap: var(--site-footer-card-gap);
 }
+
 .site-footer__card-title {
   font-size: var(--site-footer-font-size);
 }
+
 .site-footer__card-description {
   margin: 0 auto;
 }
-/* Feature cards -- this content is toggleable with  hasCards */
+
 .site-footer__feature-cards {
   display: grid;
   gap: var(--site-footer-card-gap);
@@ -74,23 +75,27 @@
 
 .site-footer__feature-card-title {
   font-size: var(--site-footer-font-size);
-/* Pseudo element for accent line */
-  &::before {
-    content: "";
-    display: block;
-    block-size: var(--site-footer-card-line-width);
-    inline-size: 100%;
-    background: var(--site-footer-text-color);
-    margin-block: var(--site-footer-content-group-gap);
-  }
 }
+
+.site-footer__feature-card-title::before {
+  content: "";
+  display: block;
+  block-size: var(--site-footer-card-line-width);
+  inline-size: 100%;
+  background: var(--site-footer-text-color);
+  margin-block: var(--site-footer-content-group-gap);
+}
+
 .site-footer__feature-card-description {
   margin: 0 auto;
 }
 
-/* bottom bar -- this content will not loved until you enable it */
 .site-footer__bottom-bar {
   --site-footer-base-bg-color-lightness: 30%;
-  background: color-mix(in srgb, var(--site-footer-base-bg-color) var(--site-footer-base-bg-color-lightness), var(--site-footer-mixed-bg-color));
+  background: color-mix(
+    in srgb,
+    var(--site-footer-base-bg-color) var(--site-footer-base-bg-color-lightness),
+    var(--site-footer-mixed-bg-color)
+  );
   padding-block: calc(var(--site-footer-padding) / 4.5);
 }

@@ -1,45 +1,38 @@
 .marketing-optin {
-  /* Variables  */
   --marketing-optn-padding: var(--card-padding);
   --marketing-optin-bg-base-color: var(--surface-mid);
-  
   --marketing-optin-bg: color-mix(in srgb, var(--surface-mid) 5%, var(--white));
   --marketing-optin-border-radius: var(--card-radius);
   --marketing-optin-parent-gap: var(--gap-lg);
   --marketing-optin-content-gap: var(--content-gap);
-  --marketing-optin-border-style: 1px color-mix(in srgb, var(--site-color) 80%, transparent) solid;
-
-  /* Code */
+  --marketing-optin-border-style: 1px
+    color-mix(in srgb, var(--site-color) 80%, transparent) solid;
   padding: var(--marketing-optn-padding);
   border-radius: var(--marketing-optin-border-radius);
-  background: var(--marketing-optin-bg)
+  background: var(--marketing-optin-bg);
 }
-/* Inner */
+
 .marketing-optin__inner-wrapper {
   display: grid;
   gap: var(--marketing-optin-parent-gap);
-  /* Has me for container queries */
-  :has(> &) {
-    container-type: inline-size;
-  }
+}
 
-  /* Setting a 2 column layout where the card has the space */
-  @container (inline-size > 830px) {
+@container (min-width: 830px) {
+  .marketing-optin__inner-wrapper {
     grid-template-columns: var(--grid-2-static);
   }
 }
 
-/* content wrapper */
 .marketing-optin__content-wrapper {
-    display: grid;
-    gap: var(--marketing-optin-content-gap);
+  display: grid;
+  gap: var(--marketing-optin-content-gap);
 }
 
 .marketing-optin__form {
-    display: grid;
-    gap: var(--marketing-optin-content-gap);
+  display: grid;
+  gap: var(--marketing-optin-content-gap);
+}
 
-    > input {
-        border: var(--marketing-optin-border-style);
-    }
+.marketing-optin__form > input {
+  border: var(--marketing-optin-border-style);
 }

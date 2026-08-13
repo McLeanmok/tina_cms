@@ -15,11 +15,11 @@
   /* Custom button classes, or overrides go here */
 }
 
-@layer chapmp-btns {
+@layer champ-btns {
   [data-btn] {
     padding: var(--btn-padding);
     border-radius: var(--btn-radius);
-    transition: var(---btn-animation);
+    transition: var(--btn-animation);
   }
   .standard-btn {
     background-color: var(--primary-btn-bg);

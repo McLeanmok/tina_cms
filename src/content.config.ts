@@ -30,13 +30,17 @@ const tidbitsAudio = defineCollection({
   }),
   schema: baseTidbit,
 });
-// article content type 
+// article content type
 const articles = defineCollection({
-    type: "content",
-    schema: z.object({
-        title: z.string(),
-        lede: z.string(),
-        date: z.date(),
-    })
-})
+  loader: glob({
+    base: "./src/content/articles",
+    pattern: "**/*.{md,mdx}",
+  }),
+  schema: z.object({
+    title: z.string(),
+    lede: z.string(),
+    date: z.coerce.date(),
+  }),
+});
+
 export const collections = { tidbitsHtml, tidbitsCss, tidbitsAudio, articles };

@@ -1,21 +1,22 @@
 ---
-// helper imports
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 
-// destructuring 
-const article = Astro.props.articles
-
-// collection entery
 type Props = {
-[x: string]: any;
-    content: CollectionEntry<'articles'>
-}
+  content: CollectionEntry<"articles">;
+};
 
-// destructuring data 
-const { content } = Astro.props;
-const { title, lede, date } = content.data
+const { content } = Astro.props as Props;
+const { title, lede, date } = content.data;
 ---
 
 <article class="article-card">
-    <h2>{title}</h2>
+  <h2 class="article-card__heading">{title}</h2>
+  <time datetime={date.toISOString()} class="article-card__date">
+    {date.toLocaleDateString(undefined, {
+      dateStyle: "medium",
+      timeZone: "UTC",
+    })}
+  </time>
+  <p class="article-card__lede">{lede}</p>
+  <a href={`/blog/${content.id}`} class="standard-btn article-card__link">Read article</a>
 </article>

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from "astro:content";
+import Container from "../../components/container.astro";
+import MainTemplate from "../../templates/main-template.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { title, lede, date } = article.data;
+const { Content } = await render(article);
+---
+
+<MainTemplate title={title} description={lede} author="Mac Mylymok">
+  <section class="article-hero">
+    <Container width="standard" customClass="article-hero__inner">
+      <p class="article-hero__eyebrow">Blog Post</p>
+      <h1 class="article-hero__heading">{title}</h1>
+      <p class="article-hero__lede">{lede}</p>
+      <time datetime={date.toISOString()} class="article-hero__date">
+        {date.toLocaleDateString(undefined, {
+          dateStyle: "medium",
+          timeZone: "UTC",
+        })}
+      </time>
+    </Container>
+  </section>
+
+  <section class="article-content">
+    <Container width="standard" customClass="article-content__inner">
+      <article class="article-content__body">
+        <Content />
+      </article>
+    </Container>
+  </section>
+</MainTemplate>
