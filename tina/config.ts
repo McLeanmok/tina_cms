@@ -1,7 +1,9 @@
 import { defineConfig, type Collection } from "tinacms";
 
 export default defineConfig({
-  branch: "main", // or your default branch
+  branch: process.env.TINA_BRANCH || "main",
+  clientId: process.env.TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
     publicFolder: "public",
