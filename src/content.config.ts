@@ -1,37 +1,60 @@
 import { glob } from "astro/loaders";
-import { defineCollection } from "astro:content";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { defineCollection, reference, z } from "astro:content";
 
 const articles = defineCollection({
   loader: glob({
     base: "src/content/articles",
     pattern: "**/*.mdx",
   }),
-});
-
-const tidbitsHtml = defineCollection({
-  loader: glob({
-    base: "src/content/tidbits-html",
-    pattern: "**/*.mdx",
+  schema: z.object({
+    title: z.string(),
+    lede: z.string().optional(),
+    date: z.coerce.date(),
+    categories: z
+      .array(z.object({ category: reference("categories") }))
+      .max(3)
+      .default([]),
+    author: reference("authors").optional(),
   }),
 });
 
-const tidbitsCss = defineCollection({
+const categories = defineCollection({
   loader: glob({
-    base: "src/content/tidbits-css",
+    base: "src/content/categories",
     pattern: "**/*.mdx",
+  }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string().optional(),
   }),
 });
 
-const tidbitsAudio = defineCollection({
+const tidbits = defineCollection({
   loader: glob({
-    base: "src/content/tidbits-audio",
+    base: "src/content/tidbits",
     pattern: "**/*.mdx",
+  }),
+  schema: z.object({
+    title: z.string(),
+    category: reference("categories"),
+    author: reference("authors").optional(),
+    pubDate: z.coerce.date(),
+    tags: z.array(z.string()).optional(),
+    lede: z.string().optional(),
   }),
 });
 
-export const collections = { articles, tidbitsHtml, tidbitsCss, tidbitsAudio };
+const authors = defineCollection({
+  loader: glob({
+    base: "src/content/authors",
+    pattern: "**/*.mdx",
+  }),
+  schema: z.object({
+    name: z.string(),
+    bio: z.string().optional(),
+    avatar: z.string().optional(),
+    email: z.string().email().optional(),
+  }),
+});
+
+export const collections = { articles, authors, categories, tidbits };

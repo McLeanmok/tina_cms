@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import TidbitCard from '../../../../components/content-api/tidbits/tidbit-card.astro';
+import MainTemplate from '../../../../templates/main-template.astro';
+import Container from '../../../../components/container.astro';
+import { tinaRefToId } from '../../../../lib/tina-ref';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  const allTidbits = await getCollection('tidbits');
+
+  return categories.map((category) => ({
+    params: { category: category.id },
+    props: {
+      categoryName: category.data.name,
+      tidbits: allTidbits.filter(
+        (t) => tinaRefToId('categories', t.data.category) === category.id
+      ),
+    },
+  }));
+}
+
+type Props = {
+  categoryName: string;
+  tidbits: Awaited<ReturnType<typeof getCollection<'tidbits'>>>;
+};
+
+const { categoryName, tidbits } = Astro.props as Props;
+
+const sorted = tidbits.sort((a, b) =>
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<MainTemplate title={"Tidbit Category: " + categoryName}>
+<section class="tidbit-category-hero">
+    <Container width="standard" customClass=" tidbit-category-hero__inne">
+        <h1>{categoryName} Tidbits</h1>
+    </Container>
+</section> <!-- End Hero -->
+
+<!-- loop -->
+ <section class="tidbit-loop">
+    <Container customClass='tidbit-loop__inner' width='standard'>
+{sorted.map((t) => <TidbitCard content={t} />)}
+    </Container>
+ </section>
+</MainTemplate>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '../../../../components/content-api/articles/article-card.astro';
+import MainTemplate from '../../../../templates/main-template.astro';
+import Container from '../../../../components/container.astro';
+import { tinaRefToId } from '../../../../lib/tina-ref';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  const allArticles = await getCollection('articles');
+
+  return categories.map((category) => ({
+    params: { category: category.id },
+    props: {
+      categoryName: category.data.name,
+      articles: allArticles.filter((a) =>
+        a.data.categories.some(
+          (c) => tinaRefToId('categories', c.category) === category.id
+        )
+      ),
+    },
+  }));
+}
+
+type Props = {
+  categoryName: string;
+  articles: Awaited<ReturnType<typeof getCollection<'articles'>>>;
+};
+
+const { categoryName, articles } = Astro.props as Props;
+
+const sorted = articles.sort((a, b) =>
+  b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<MainTemplate title={"Blog Category: " + categoryName}>
+<section class="article-category-hero">
+    <Container width="standard" customClass="article-category-hero__inner">
+        <h1>{categoryName} Articles</h1>
+    </Container>
+</section> <!-- End Hero -->
+
+<!-- loop -->
+ <section class="article-loop">
+    <Container customClass='article-loop__inner' width='standard'>
+{sorted.map((a) => <ArticleCard content={a} />)}
+    </Container>
+ </section>
+</MainTemplate>

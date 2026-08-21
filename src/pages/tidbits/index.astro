@@ -4,7 +4,7 @@ import Container from "../../components/container.astro";
 import Intro from "../../components/intro/index.astro"
 
 // importing Content type 
-import { getAllTidbits } from "../../scripts/lib";
+import { getAllTidbits } from "../../lib/tidbits";
 import TidbitCard from "../../components/content-api/tidbits/tidbit-card.astro";
 
 const tidbits = await getAllTidbits();

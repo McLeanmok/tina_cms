@@ -1,7 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
-import Container from "../../components/container.astro";
 import MainTemplate from "../../templates/main-template.astro";
+import Container from "../../components/container.astro";
+import ArticleCard from "../../components/content-api/articles/article-card.astro";
+import { getCollection, render } from "astro:content";
+import { resolveTinaRef, tinaRefToId } from "../../lib/tina-ref";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -13,11 +17,37 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const { title, lede, date } = article.data;
+const { title, lede, date, categories, author } = article.data;
 const { Content } = await render(article);
+
+// categories are stored as [{ category: reference }] (Tina's object-wrapper
+// workaround for list references) — resolve each to its actual document.
+const resolvedCategories = (
+  await Promise.all(categories.map((c) => resolveTinaRef("categories", c.category)))
+).filter((cat) => cat !== undefined);
+
+// author is a single reference — resolve directly.
+const resolvedAuthor = await resolveTinaRef("authors", author);
+
+// Related posts: other articles sharing at least one category, newest first.
+const allArticles = await getCollection("articles");
+const currentCategoryIds = new Set(
+  categories.map((c) => tinaRefToId("categories", c.category))
+);
+
+const related = allArticles
+  .filter(
+    (a) =>
+      a.id !== article.id &&
+      a.data.categories.some((c) =>
+        currentCategoryIds.has(tinaRefToId("categories", c.category))
+      )
+  )
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<MainTemplate title={title} description={lede} author="Mac Mylymok">
+<MainTemplate title={title} description={lede} author={resolvedAuthor?.data.name}>
   <section class="article-hero">
     <Container width="standard" customClass="article-hero__inner">
       <p class="article-hero__eyebrow">Blog Post</p>
@@ -29,6 +59,34 @@ const { Content } = await render(article);
           timeZone: "UTC",
         })}
       </time>
+
+      {resolvedAuthor && (
+        <div class="article-hero__byline">
+          {resolvedAuthor.data.avatar && (
+            <img
+              src={resolvedAuthor.data.avatar}
+              alt={resolvedAuthor.data.name}
+              class="article-hero__byline-avatar"
+            />
+          )}
+          <div class="article-hero__byline-text">
+            <span class="article-hero__byline-name">{resolvedAuthor.data.name}</span>
+            {resolvedAuthor.data.bio && (
+              <p class="article-hero__byline-bio">{resolvedAuthor.data.bio}</p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {resolvedCategories.length > 0 && (
+        <ul class="article-hero__categories">
+          {resolvedCategories.map((cat) => (
+            <li class="article-hero__category-badge">
+              <a href={`/blog/category/${cat.id}`}>{cat.data.name}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </Container>
   </section>
 
@@ -37,6 +95,13 @@ const { Content } = await render(article);
       <article class="article-content__body">
         <Content />
       </article>
+
+      {related.length > 0 && (
+        <aside class="article-content__related">
+          <h3 class="article-content__related-heading">Related Posts</h3>
+          {related.map((a) => <ArticleCard content={a} />)}
+        </aside>
+      )}
     </Container>
   </section>
 </MainTemplate>

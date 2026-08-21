@@ -1,33 +1,35 @@
 ---
-import { getAllTidbits } from "../../scripts/lib";
+import { getAllTidbits } from "../../lib/tidbits";
+import { resolveTinaRef } from "../../lib/tina-ref";
 import TidbitCard from "../../components/content-api/tidbits/tidbit-card.astro";
 
 import MainTemplate from "../../templates/main-template.astro";
 import { render } from "astro:content";
 import Container from "../../components/container.astro";
 
-// getstaticpaths
-export async function getStaticPaths() {
-    const tidbits = await getAllTidbits();
+export const prerender = true;
 
-    return tidbits.map((tidbit) => ({
-        params: { slug: tidbit.id },
-        props: { tidbit }
-    }));
+export async function getStaticPaths() {
+  const tidbits = await getAllTidbits();
+
+  return tidbits.map((tidbit) => ({
+    params: { slug: tidbit.id },
+    props: { tidbit },
+  }));
 }
 
-// destructuring stuff
-const {tidbit} = Astro.props;
-const {title, lede, tags, pubDate} = tidbit.data;
-const {Content} = await render(tidbit);
+const { tidbit } = Astro.props;
+const { title, lede, tags, pubDate, author } = tidbit.data;
+const { Content } = await render(tidbit);
+
+const resolvedAuthor = await resolveTinaRef("authors", author);
 
 const allTidbits = await getAllTidbits();
-// filter the array for related tidbits and exclude the current tidbit
 const related = allTidbits
-    .filter(t => t.collection === tidbit.collection && t.id !== tidbit.id)
-    .slice(0, 3);
+  .filter((t) => t.collection === tidbit.collection && t.id !== tidbit.id)
+  .slice(0, 3);
 ---
-<MainTemplate title={title} lede={lede} author="McLean Mylymok">
+<MainTemplate title={title} lede={lede} author={resolvedAuthor?.data.name ?? "McLean Mylymok"}>
     <!-- hero -->
     <section class="tidbit-single-hero">
         <Container width="standard" customClass="tidbit-single-hero__inner">
