@@ -5,10 +5,12 @@ import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
 
 import mdx from '@astrojs/mdx';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  adapter: cloudflare(),
   integrations: [tina(), mdx()],
   vite: {
     plugins: [tinaAdminDevRedirect()],
